@@ -170,14 +170,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/nano-build@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "@alwatr/nano-build@npm:6.0.2"
+"@alwatr/nano-build@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@alwatr/nano-build@npm:6.2.0"
   dependencies:
     esbuild: "npm:^0.25.9"
+    picocolors: "npm:^1.1.1"
   bin:
     nano-build: nano-build.cjs
-  checksum: 10c0/5eba8720e4365190fd15650c8de251036f623e08ef91b75e0c470c5f1a6254cbf3b2635aa0f79304775848e60398bd8cb9c8266d0fc7158c2f4dae0ce38b017e
+  checksum: 10c0/5210c8b418ac19e78f2adc6b5c3b2b6aa534fb154c5429a28e235e7d5eadb750ea787359cdffb07390bdc66ea1030fc95946e9ac452a5efbaa214bf5c2e28113
   languageName: node
   linkType: hard
 
@@ -273,10 +274,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/package-tracer@npm:^5.5.7":
-  version: 5.5.7
-  resolution: "@alwatr/package-tracer@npm:5.5.7"
-  checksum: 10c0/603380a46b30d0dbccad39b1d4a86612c62fbdbbdaf844919735d88ef09c1bd6269511a560c29075bcf06d2a4e70c9a1873f7cdea97e716dd64cb1c4ed467640
+"@alwatr/package-tracer@npm:^5.5.12":
+  version: 5.5.12
+  resolution: "@alwatr/package-tracer@npm:5.5.12"
+  checksum: 10c0/c85a455b38e28d781f73a3edfe909f5f7c8ba11d6d7c4f0dd3999be872b22bc3e9f181c427b2e7a6af54ba15f93d5c3c34e91ef5c896abfa16eddcf3c69d29a8
   languageName: node
   linkType: hard
 
@@ -357,10 +358,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alwatr/type-helper@npm:^5.4.4":
-  version: 5.4.4
-  resolution: "@alwatr/type-helper@npm:5.4.4"
-  checksum: 10c0/8b55acebd42ba9ef583f7ccd5248fe391fb488903420fa3edf4ef0573158f4a589560c290a4c46e1eebbf41f71568dec0a1bb318ca2980517642e91b5a09cccd
+"@alwatr/type-helper@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@alwatr/type-helper@npm:6.0.2"
+  checksum: 10c0/741e08f68890aca4f36ff84049232e96250b64dd6fc6d60907bb1b20a1ad772f3a9c211841c0fe8c2d90f38a465a0de3bcf14dc5c70eae8a374cc2e1ab2d6c33
   languageName: node
   linkType: hard
 
@@ -1220,12 +1221,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nexim/api-connect@workspace:packages/api-connect"
   dependencies:
-    "@alwatr/nano-build": "npm:^6.0.2"
+    "@alwatr/nano-build": "npm:^6.2.0"
     "@alwatr/nanotron": "npm:^4.9.4"
     "@alwatr/nitrobase-helper": "npm:^7.8.0"
     "@alwatr/nitrobase-types": "npm:^7.8.0"
-    "@alwatr/package-tracer": "npm:^5.5.7"
-    "@alwatr/type-helper": "npm:^5.4.4"
+    "@alwatr/package-tracer": "npm:^5.5.12"
+    "@alwatr/type-helper": "npm:^6.0.2"
     "@nexim/eslint-config": "npm:^2.1.3"
     "@nexim/prettier-config": "npm:^1.3.1"
     "@nexim/typescript-config": "npm:^2.0.1"
@@ -6137,7 +6138,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picocolors@npm:^1.0.0":
+"picocolors@npm:^1.0.0, picocolors@npm:^1.1.1":
   version: 1.1.1
   resolution: "picocolors@npm:1.1.1"
   checksum: 10c0/e2e3e8170ab9d7c7421969adaa7e1b31434f789afb9b3f115f6b96d91945041ac3ceb02e9ec6fe6510ff036bcc0bf91e69a1772edc0b707e12b19c0f2d6bcf58
