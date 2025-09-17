@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Sync labels
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - next
+    paths:
+      - .github/labels.yaml
+      - .github/sync-labels.yml
+
+jobs:
+  main:
+    uses: the-nexim/actions/.github/workflows/sync-label.yaml@v1
+
+    permissions:
+      contents: read
+      issues: write

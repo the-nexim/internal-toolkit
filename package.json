@@ -1,61 +1,110 @@
 {
   "name": "nanolib-monorepo",
+  "private": true,
   "description": "Necessary library for all ECMAScript (JavaScript/TypeScript) projects.",
   "repository": "https://github.com/the-nexim/nanolib",
-  "author": "S. Amir Mohammad Najafi <njfamirm@gmail.com> (www.njfamirm.ir)",
   "license": "AGPL-3.0-only",
+  "author": "S. Amir Mohammad Najafi <njfamirm@gmail.com> (https://www.njfamirm.ir)",
+  "contributors": [
+    {
+      "name": "MohammadReza Ghadiri",
+      "email": "ghmamadreza84@gmail.com",
+      "url": "https://github.com/orgs/the-nexim/people/GhMamadreza84"
+    }
+  ],
   "type": "module",
-  "private": true,
-  "engines": {
-    "node": ">=18.16.0",
-    "yarn": ">=4.0.0"
-  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "b": "yarn run build",
-    "t": "yarn run test",
-    "w": "yarn run watch",
-    "c": "yarn run clean",
-    "cb": "yarn run clean && yarn run build",
-    "l": "yarn run lint",
-    "f": "yarn run format",
-    "rl": "yarn run pull && yarn run clean && yarn run build && yarn run lint && yarn run release",
-    "upd": "yarn set version latest; yarn up '*'; yarn up '*' -R; yarn dlx @yarnpkg/sdks vscode; yarn dedupe",
-    "lint": "yarn run lint:ts && yarn run lint:es",
-    "lint:es": "eslint . --config .eslintrc.json --ext .ts",
-    "lint:ts": "lerna run build:ts",
-    "build": "lerna run build",
-    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --enable-source-maps --experimental-vm-modules\" ava",
-    "watch": "lerna run --parallel watch",
-    "format": "yarn run format:prettier && yarn run format:eslint",
-    "format:eslint": "yarn run lint --fix",
-    "format:prettier": "prettier . --ignore-path .gitignore --write",
-    "clean": "git add -v . && git clean -d -x -f --exclude=node_modules --exclude='*.env' --exclude=_data --exclude='.pnp*' --exclude=.yarn",
-    "pull": "git pull",
-    "release": "lerna version",
-    "publish": "lerna publish from-package"
+    "build": "wireit",
+    "clean": "wireit",
+    "doc": "wireit",
+    "format": "wireit",
+    "lint": "wireit",
+    "publish": "wireit",
+    "release": "wireit",
+    "test": "wireit",
+    "upd": "yarn set version latest && yarn up '*' && yarn up '*' -R && yarn dedupe"
   },
   "devDependencies": {
-    "@alwatr/eslint-config": "^5.0.0",
-    "@alwatr/prettier-config": "^5.0.0",
-    "@lerna-lite/changed": "^3.10.0",
-    "@lerna-lite/cli": "^3.10.0",
-    "@lerna-lite/diff": "^3.10.0",
-    "@lerna-lite/exec": "^3.10.0",
-    "@lerna-lite/publish": "^3.10.0",
-    "@lerna-lite/run": "^3.10.0",
-    "@lerna-lite/version": "^3.10.0",
-    "@typescript-eslint/eslint-plugin": "^7.15.0",
-    "@typescript-eslint/parser": "^7.15.0",
-    "conventional-changelog-conventionalcommits": "^7.0.2",
-    "eslint": "^8.57.1",
-    "eslint-import-resolver-typescript": "^3.6.3",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-require-extensions": "^0.1.3",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.3"
+    "@eslint/compat": "^1.3.2",
+    "@lerna-lite/changed": "^4.7.3",
+    "@lerna-lite/cli": "^4.7.3",
+    "@lerna-lite/diff": "^4.7.3",
+    "@lerna-lite/exec": "^4.7.3",
+    "@lerna-lite/publish": "^4.7.3",
+    "@lerna-lite/run": "^4.7.3",
+    "@lerna-lite/version": "^4.7.3",
+    "@stylistic/eslint-plugin": "^5.2.3",
+    "@types/node": "^24.3.1",
+    "ava": "^6.4.1",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "eslint": "^9.34.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "^2.5.19",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "typescript": "^5.9.2",
+    "wireit": "^0.14.12"
   },
-  "packageManager": "yarn@4.5.1"
+  "dependenciesMeta": {
+    "prettier-plugin-tailwindcss@0.6.9": {
+      "unplugged": true
+    }
+  },
+  "packageManager": "yarn@4.9.4",
+  "engines": {
+    "node": ">=18.16.0",
+    "yarn": ">=4.0.0"
+  },
+  "wireit": {
+    "build": {
+      "command": "lerna run build"
+    },
+    "clean": {
+      "command": "git add -v . && git clean -d -x -f --exclude=node_modules --exclude='*.env' --exclude=_data --exclude='.pnp*' --exclude=.yarn"
+    },
+    "format": {
+      "dependencies": [
+        "format:eslint"
+      ]
+    },
+    "format:eslint": {
+      "command": "yarn run lint -- --fix",
+      "dependencies": [
+        "format:prettier"
+      ]
+    },
+    "format:prettier": {
+      "command": "prettier . --ignore-path .prettierignore --write"
+    },
+    "lint": {
+      "command": "eslint . --config eslint.config.mjs --cache"
+    },
+    "publish": {
+      "command": "lerna publish from-package"
+    },
+    "release": {
+      "command": "gh workflow list --json id,name,path | jq -r '.[] | select(.path == \".github/workflows/release.yaml\") | .id' | xargs -r gh workflow run",
+      "dependencies": [
+        "push"
+      ]
+    },
+    "pull": {
+      "command": "git pull -v"
+    },
+    "push": {
+      "command": "git push -v",
+      "dependencies": [
+        "pull"
+      ]
+    },
+    "test": {
+      "command": "lerna run test"
+    },
+    "doc": {
+      "command": "lerna run doc"
+    }
+  }
 }

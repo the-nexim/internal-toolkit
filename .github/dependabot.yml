@@ -6,13 +6,14 @@ updates:
     directory: /
     open-pull-requests-limit: 20
     commit-message:
-      prefix: 'deps'
+      prefix: deps
+      include: scope
     reviewers:
-      - AliMD
+      - njfamirm
     schedule:
       interval: weekly
-      time: '00:30'
-      day: 'thursday'
+      time: '10:30'
+      day: thursday
     labels:
       - ci
       - priority-low
@@ -27,13 +28,14 @@ updates:
     versioning-strategy: increase
     open-pull-requests-limit: 20
     commit-message:
-      prefix: 'deps'
+      prefix: deps
+      include: scope
     reviewers:
-      - AliMD
+      - njfamirm
     schedule:
       interval: weekly
-      time: '00:30'
-      day: 'thursday'
+      time: '10:30'
+      day: thursday
     labels:
       - dependencies
       - ci
@@ -44,13 +46,68 @@ updates:
         dependency-type: 'production'
         exclude-patterns:
           - '@alwatr/*'
-          - 'fract'
+          - '@nexim/*'
+          - 'alwatr'
       development-dependencies:
-        dependency-type: 'development'
         exclude-patterns:
           - '@alwatr/*'
-          - 'fract'
-      alwatr-dependencies:
+          - '@nexim/*'
+          - 'alwatr'
+      alwatr:
         patterns:
           - '@alwatr/*'
-          - 'fract'
+          - 'alwatr'
+      nexim:
+        patterns:
+          - '@nexim/*'
+
+  - package-ecosystem: docker
+    directory: /packages/app
+    reviewers:
+      - njfamirm
+    schedule:
+      interval: weekly
+      time: '10:30'
+      day: thursday
+    labels:
+      - ci
+      - priority-low
+      - maintenance
+    ignore:
+      - dependency-name: 'alwatr/node'
+        update-types:
+          - version-update:semver-major
+
+  - package-ecosystem: docker
+    directory: /packages/admin
+    reviewers:
+      - njfamirm
+    schedule:
+      interval: weekly
+      time: '10:30'
+      day: thursday
+    labels:
+      - ci
+      - priority-low
+      - maintenance
+    ignore:
+      - dependency-name: 'alwatr/node'
+        update-types:
+          - version-update:semver-major
+
+  - package-ecosystem: docker
+    directory: /packages/api
+    reviewers:
+      - njfamirm
+    schedule:
+      interval: weekly
+      time: '10:30'
+      day: thursday
+    labels:
+      - ci
+      - priority-low
+      - maintenance
+    ignore:
+      - dependency-name: 'alwatr/node'
+        update-types:
+          - version-update:semver-major
