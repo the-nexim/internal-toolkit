@@ -3,7 +3,6 @@ import { fetch, type FetchOptions } from '@alwatr/fetch';
 import type { ErrorServiceResponse, SuccessServiceResponse, ServiceResponse } from './lib/service-response.js';
 import type { Json } from '@alwatr/type-helper';
 
-
 // Define Result types for the safe result pattern
 export type NanotronFetchResult<TData extends Json> =
   | {

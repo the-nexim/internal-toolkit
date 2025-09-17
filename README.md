@@ -8,7 +8,6 @@ Here is a brief overview of the included libraries:
 
 1. [`api-connect`](./packages/api-connect): Utilities to simplify the usage of API & Database connections in your web applications.
 
-
 For more detailed information and guidelines on how to use each package, please refer to each package's README.
 
 ## Contributing

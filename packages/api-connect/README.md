@@ -8,7 +8,7 @@
 
 ## Overview
 
-`@nexim/api-connect`  utility function to execute Alwatr API & Database calls with TypeScript type safety.
+`@nexim/api-connect` utility function to execute Alwatr API & Database calls with TypeScript type safety.
 
 ## Installation
 
