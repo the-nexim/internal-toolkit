@@ -46,9 +46,10 @@ function Counter() {
 // Trigger Example
 const buttonTrigger = createTrigger();
 function Button() {
-  useTrigger(buttonTrigger, () => {
+  const handleClick = useCallback(() => {
     console.log('Button clicked!');
-  });
+  }, []);
+  useTrigger(buttonTrigger, handleClick);
   return <button onClick={() => buttonTrigger.trigger()}>Click me</button>;
 }
 

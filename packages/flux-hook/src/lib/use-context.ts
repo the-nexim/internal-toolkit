@@ -1,23 +1,8 @@
-import { createLogger } from '@alwatr/logger';
-import { platformInfo } from '@alwatr/platform-info';
 import { useEffect, useState, useCallback } from 'react';
 
+import { logger } from './logger.js';
+
 import type { AlwatrContext, SubscribeOptions } from '@alwatr/flux';
-
-const logger = createLogger('flux-hook');
-
-if (platformInfo.isNode) {
-  logger.logMethod = undefined;
-  logger.logMethodArgs = undefined;
-  logger.logFileModule = undefined;
-  logger.logProperty = undefined;
-  logger.logOther = undefined;
-  logger.incident = undefined;
-  logger.logStep = undefined;
-  logger.logMethodFull = undefined;
-  logger.time = undefined;
-  logger.timeEnd = undefined;
-}
 
 /**
  * React hook for subscribing to an Alwatr context and managing its state.

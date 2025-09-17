@@ -54,9 +54,7 @@
   },
   "dependencies": {
     "@alwatr/flux": "^4.0.5",
-    "@alwatr/package-tracer": "^5.5.7",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "@alwatr/package-tracer": "^5.5.7"
   },
   "devDependencies": {
     "@alwatr/nano-build": "latest",
@@ -71,6 +69,10 @@
     "typedoc-plugin-no-inherit": "^1.6.1",
     "typescript": "^5.9.2",
     "wireit": "^0.14.12"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "publishConfig": {
     "access": "public"
