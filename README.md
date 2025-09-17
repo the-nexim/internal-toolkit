@@ -7,6 +7,7 @@ This repository contains numerous small utility packages. These packages serve v
 Here is a brief overview of the included libraries:
 
 1. [`api-connect`](./packages/api-connect): Utilities to simplify the usage of API & Database connections in your web applications, implementing the Safe Result Pattern for error handling.
+2. [`flux-hook`](./packages/flux-hook): React hooks for integrating with Alwatr's flux architecture, providing useContext, useSignal, and useTrigger hooks for state management.
 
 For more detailed information and guidelines on how to use each package, please refer to each package's README.
 

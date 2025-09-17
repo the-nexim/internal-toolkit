@@ -9,6 +9,9 @@
   "references": [
     {
       "path": "packages/api-connect"
+    },
+    {
+      "path": "packages/flux-hook"
     }
   ]
 }
