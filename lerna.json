@@ -1,10 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/lerna-lite/lerna-lite/main/packages/cli/schemas/lerna-schema.json",
-  "version": "5.2.1",
+  "version": "independent",
   "npmClient": "yarn",
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "loglevel": "verbose",
   "command": {
     "version": {
@@ -38,8 +36,13 @@
             "section": "Code Refactoring"
           },
           {
+            "type": "doc",
+            "section": "Documentation"
+          },
+          {
             "type": "chore",
-            "section": "Miscellaneous Chores"
+            "section": "Miscellaneous Chores",
+            "hidden": true
           },
           {
             "type": "docs",
@@ -47,14 +50,9 @@
             "hidden": true
           },
           {
-            "type": "doc",
-            "section": "Documentation",
-            "hidden": true
-          },
-          {
             "type": "deps",
             "section": "Dependencies update",
-            "hidden": false
+            "hidden": true
           },
           {
             "type": "style",
@@ -79,18 +77,14 @@
         ]
       },
       "changelogIncludeCommitsClientLogin": " by @%l",
-      "ignoreChanges": [
-        "*.md"
-      ],
-      "skipBumpOnlyReleases": true,
-      "message": "release:",
-      "private": false,
+      "ignoreChanges": ["*.md"],
+      "message": "release: new independent version",
+      "private": true,
       "forceGitTag": true,
       "signGitTag": true,
       "signGitCommit": true,
       "push": true,
-      "createRelease": "github",
-      "conventionalGraduate": true
+      "createRelease": "github"
     },
     "run": {
       "stream": true

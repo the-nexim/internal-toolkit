@@ -1,24 +1,22 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
-name: Publish NPM
+name: Build & Lint & Test
 
 on:
   workflow_dispatch:
 
-  release:
-    types:
-      - created
+  pull_request:
+
+  push:
+    branches:
+      - next
 
 jobs:
   main:
-    uses: the-nexim/actions/.github/workflows/publish-npm.yaml@v1
+    uses: the-nexim/actions/.github/workflows/build-lint-test.yaml@v1
 
     permissions:
       contents: read
-      id-token: write
 
     with:
       node-version: lts/*
-
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Build & Lint & Test & Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  main:
+    uses: the-nexim/actions/.github/workflows/release.yaml@v1
+
+    permissions:
+      contents: write
+
+    with:
+      node-version: lts/*
+
+    secrets:
+      RELEASER_ACCOUNT_TOKEN: ${{ secrets.BOT_TOKEN }}
+      GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
