@@ -26,7 +26,7 @@
     {
       "name": "MohammadReza Ghadiri",
       "email": "ghmamadreza84@gmail.com",
-      "url": "https://github.com/orgs/the-nexim/people/GhMamadreza84"
+      "url": "https://github.com/GhMamadreza84"
     }
   ],
   "type": "module",
@@ -54,7 +54,8 @@
   },
   "dependencies": {
     "@alwatr/flux": "^4.0.5",
-    "@alwatr/package-tracer": "^5.5.7"
+    "@alwatr/package-tracer": "^5.5.7",
+    "react": "^19.2.0"
   },
   "devDependencies": {
     "@alwatr/nano-build": "latest",
@@ -69,10 +70,6 @@
     "typedoc-plugin-no-inherit": "^1.6.1",
     "typescript": "^5.9.2",
     "wireit": "^0.14.12"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "publishConfig": {
     "access": "public"

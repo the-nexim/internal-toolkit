@@ -30,37 +30,6 @@ npm install @nexim/flux-hook
 yarn add @nexim/flux-hook
 ```
 
-## Usage
-
-```tsx
-import { useSignal, useTrigger, useContext } from '@nexim/flux-hook';
-import { createSignal, createTrigger, createContext } from '@alwatr/flux';
-
-// Signal Example
-const counterSignal = createSignal({ count: 0 });
-function Counter() {
-  const state = useSignal(counterSignal, { count: 0 });
-  return <div>Count: {state.count}</div>;
-}
-
-// Trigger Example
-const buttonTrigger = createTrigger();
-function Button() {
-  const handleClick = useCallback(() => {
-    console.log('Button clicked!');
-  }, []);
-  useTrigger(buttonTrigger, handleClick);
-  return <button onClick={() => buttonTrigger.trigger()}>Click me</button>;
-}
-
-// Context Example
-const themeContext = createContext({ mode: 'light' });
-function ThemeConsumer() {
-  const theme = useContext(themeContext, { mode: 'light' });
-  return <div>Current theme: {theme.mode}</div>;
-}
-```
-
 ## Documentation
 
 Read full documentation [here](./docs/README.md).
