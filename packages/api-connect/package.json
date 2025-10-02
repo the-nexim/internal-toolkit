@@ -1,6 +1,6 @@
 {
   "name": "@nexim/api-connect",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A utility function to execute Alwatr API & Database calls with TypeScript type safety using the Safe Result Pattern.",
   "keywords": [
     "api",
