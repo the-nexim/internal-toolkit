@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useSyncExternalStore, useCallback } from 'react';
 
 import { logger } from './logger.js';
 
@@ -10,7 +10,6 @@ import type { AlwatrContext, SubscribeOptions } from '@alwatr/flux';
  *
  * @param contextInstance - The Alwatr context instance to subscribe to
  * @param defaultValue - Default value to use when context is undefined
- * @param deps - Optional dependency array for the subscription (default: [])
  * @param options - Optional subscription options
  *
  * @returns The current context state
@@ -32,13 +31,11 @@ import type { AlwatrContext, SubscribeOptions } from '@alwatr/flux';
  *   );
  * }
  *
- * // With dependencies and options
- * function UserWithDeps() {
- *   const [userId, setUserId] = useState(1);
+ * // With subscription options
+ * function UserWithOptions() {
  *   const user = useContext(
  *     userContext,
  *     defaultUser,
- *     [userId], // Re-subscribe when userId changes
  *     { once: true } // Subscription options
  *   );
  *
@@ -46,29 +43,20 @@ import type { AlwatrContext, SubscribeOptions } from '@alwatr/flux';
  * }
  * ```
  */
-export function useContext<T extends DictionaryOpt>(
-  contextInstance: AlwatrContext<T>,
-  defaultValue: T,
-  deps: unknown[] = [],
-  options?: SubscribeOptions,
-): T {
-  logger.logMethodArgs?.('useContext', { contextInstance, defaultValue, deps });
+export function useContext<T extends DictionaryOpt>(contextInstance: AlwatrContext<T>, defaultValue: T, options?: SubscribeOptions): T {
+  logger.logMethodArgs?.('useContext', { contextInstance, defaultValue });
 
-  const [ contextState, setContextState ] = useState<T>(contextInstance.getValue() ?? defaultValue);
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const { unsubscribe } = contextInstance.subscribe(onStoreChange, options);
+      return unsubscribe;
+    },
+    [ contextInstance, options ],
+  );
 
-  const handleStateChange = useCallback((newState: T) => {
-    setContextState(newState);
-  }, []);
+  const getSnapshot = useCallback(() => contextInstance.getValue() ?? defaultValue, [ contextInstance, defaultValue ]);
 
-  useEffect(() => {
-    // Set initial state in case it changed between useState initialization and useEffect execution
-    logger.logMethodArgs?.('useContext.stateChange', { defaultValue });
+  const getServerSnapshot = useCallback(() => defaultValue, [ defaultValue ]);
 
-    const { unsubscribe } = contextInstance.subscribe(handleStateChange, options);
-
-    // Clean up subscription on unmount or when dependencies change
-    return unsubscribe;
-  }, [ contextInstance, handleStateChange, ...deps ]);
-
-  return contextState;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

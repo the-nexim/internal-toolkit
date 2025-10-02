@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useSyncExternalStore, useCallback, useRef } from 'react';
 
 import { logger } from './logger.js';
 
@@ -10,7 +10,6 @@ import type { AlwatrSignal, SubscribeOptions } from '@alwatr/flux';
  *
  * @param signalInstance - The Alwatr signal instance to subscribe to
  * @param defaultValue - Default value to use when signal hasn't emitted yet
- * @param deps - Optional dependency array for the subscription (default: [])
  * @param options - Optional subscription options
  *
  * @returns The current signal state
@@ -34,12 +33,11 @@ import type { AlwatrSignal, SubscribeOptions } from '@alwatr/flux';
  *   );
  * }
  *
- * // Advanced usage with dependencies and options
- * function ConditionalNotification({ userId }: { userId: string }) {
+ * // Advanced usage with options
+ * function ConditionalNotification() {
  *   const notification = useSignal(
  *     notificationSignal,
  *     defaultNotification,
- *     [userId], // Re-subscribe when userId changes
  *     { once: true } // Only receive first notification
  *   );
  *
@@ -47,26 +45,25 @@ import type { AlwatrSignal, SubscribeOptions } from '@alwatr/flux';
  * }
  * ```
  */
-export function useSignal<T extends DictionaryOpt>(
-  signalInstance: AlwatrSignal<T>,
-  defaultValue: T,
-  deps: unknown[] = [],
-  options?: SubscribeOptions,
-): T {
-  logger.logMethodArgs?.('useSignal', { signalInstance, defaultValue, deps });
+export function useSignal<T extends DictionaryOpt>(signalInstance: AlwatrSignal<T>, defaultValue: T, options?: SubscribeOptions): T {
+  logger.logMethodArgs?.('useSignal', { signalInstance, defaultValue });
 
-  const [ signalState, setSignalState ] = useState<T>(defaultValue);
+  const latestValueRef = useRef<T>(defaultValue);
 
-  const handleStateChange = useCallback((newState: T) => {
-    setSignalState(newState);
-  }, []);
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const { unsubscribe } = signalInstance.subscribe((newValue: T) => {
+        latestValueRef.current = newValue;
+        onStoreChange();
+      }, options);
+      return unsubscribe;
+    },
+    [ signalInstance, options ],
+  );
 
-  useEffect(() => {
-    const { unsubscribe } = signalInstance.subscribe(handleStateChange, options);
+  const getSnapshot = useCallback(() => latestValueRef.current, []);
 
-    // Clean up subscription on unmount or when dependencies change
-    return unsubscribe;
-  }, [ signalInstance, handleStateChange, options, ...deps ]);
+  const getServerSnapshot = useCallback(() => defaultValue, [ defaultValue ]);
 
-  return signalState;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

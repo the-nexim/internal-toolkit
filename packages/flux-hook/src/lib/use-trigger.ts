@@ -9,7 +9,6 @@ import type { AlwatrTrigger, SubscribeOptions } from '@alwatr/flux';
  *
  * @param triggerInstance - The Alwatr trigger instance to subscribe to
  * @param callback - Function to execute when trigger fires
- * @param deps - Optional dependency array for the subscription (default: [])
  * @param options - Optional subscription options
  *
  * @example
@@ -28,24 +27,22 @@ import type { AlwatrTrigger, SubscribeOptions } from '@alwatr/flux';
  *   return <div>{data.map(item => <Item key={item.id} {...item} />)}</div>;
  * }
  *
- * // With dependencies and options
- * function ConditionalRefresh({ enabled }: { enabled: boolean }) {
+ * // With subscription options
+ * function ConditionalRefresh() {
  *   useTrigger(
  *     refreshTrigger,
  *     () => console.log('Refreshed!'),
- *     [enabled], // Re-subscribe when enabled changes
  *     { once: true } // Only trigger once
  *   );
  * }
  * ```
  */
-export function useTrigger(triggerInstance: AlwatrTrigger, callback: () => void, deps: unknown[] = [], options?: SubscribeOptions): void {
-  logger.logMethodArgs?.('useTrigger', { triggerInstance, callback, deps });
+export function useTrigger(triggerInstance: AlwatrTrigger, callback: () => void, options?: SubscribeOptions): void {
+  logger.logMethodArgs?.('useTrigger', { triggerInstance, callback });
 
   useEffect(() => {
     const { unsubscribe } = triggerInstance.subscribe(callback, options);
 
-    // Clean up subscription on unmount or when dependencies change
     return unsubscribe;
-  }, [ triggerInstance, callback, options, ...deps ]);
+  }, [ triggerInstance, callback, options ]);
 }
