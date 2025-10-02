@@ -2,7 +2,7 @@
 
 # Function: useSignal()
 
-> **useSignal**\<`T`\>(`signalInstance`: `AlwatrSignal`\<`T`\>, `defaultValue`: `T`, `deps`: `unknown`[], `options?`: `SubscribeOptions`): `T`
+> **useSignal**\<`T`\>(`signalInstance`: `AlwatrSignal`\<`T`\>, `defaultValue`: `T`, `options?`: `SubscribeOptions`): `T`
 
 React hook for subscribing to an Alwatr signal and managing its state.
 
@@ -14,12 +14,11 @@ React hook for subscribing to an Alwatr signal and managing its state.
 
 ## Parameters
 
-| Parameter        | Type                  | Default value | Description                                                  |
-| ---------------- | --------------------- | ------------- | ------------------------------------------------------------ |
-| `signalInstance` | `AlwatrSignal`\<`T`\> | `undefined`   | The Alwatr signal instance to subscribe to                   |
-| `defaultValue`   | `T`                   | `undefined`   | Default value to use when signal hasn't emitted yet          |
-| `deps`           | `unknown`[]           | `[]`          | Optional dependency array for the subscription (default: []) |
-| `options?`       | `SubscribeOptions`    | `undefined`   | Optional subscription options                                |
+| Parameter        | Type                  | Description                                         |
+| ---------------- | --------------------- | --------------------------------------------------- |
+| `signalInstance` | `AlwatrSignal`\<`T`\> | The Alwatr signal instance to subscribe to          |
+| `defaultValue`   | `T`                   | Default value to use when signal hasn't emitted yet |
+| `options?`       | `SubscribeOptions`    | Optional subscription options                       |
 
 ## Returns
 
@@ -41,12 +40,11 @@ function NotificationBell() {
   return <div>{notification.count > 0 && <span>{notification.message}</span>}</div>;
 }
 
-// Advanced usage with dependencies and options
-function ConditionalNotification({ userId }: { userId: string }) {
+// Advanced usage with options
+function ConditionalNotification() {
   const notification = useSignal(
     notificationSignal,
     defaultNotification,
-    [userId], // Re-subscribe when userId changes
     { once: true }, // Only receive first notification
   );
 

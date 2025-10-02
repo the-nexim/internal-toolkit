@@ -2,7 +2,7 @@
 
 # Function: useContext()
 
-> **useContext**\<`T`\>(`contextInstance`: `AlwatrContext`\<`T`\>, `defaultValue`: `T`, `deps`: `unknown`[], `options?`: `SubscribeOptions`): `T`
+> **useContext**\<`T`\>(`contextInstance`: `AlwatrContext`\<`T`\>, `defaultValue`: `T`, `options?`: `SubscribeOptions`): `T`
 
 React hook for subscribing to an Alwatr context and managing its state.
 
@@ -14,12 +14,11 @@ React hook for subscribing to an Alwatr context and managing its state.
 
 ## Parameters
 
-| Parameter         | Type                   | Default value | Description                                                  |
-| ----------------- | ---------------------- | ------------- | ------------------------------------------------------------ |
-| `contextInstance` | `AlwatrContext`\<`T`\> | `undefined`   | The Alwatr context instance to subscribe to                  |
-| `defaultValue`    | `T`                    | `undefined`   | Default value to use when context is undefined               |
-| `deps`            | `unknown`[]            | `[]`          | Optional dependency array for the subscription (default: []) |
-| `options?`        | `SubscribeOptions`     | `undefined`   | Optional subscription options                                |
+| Parameter         | Type                   | Description                                    |
+| ----------------- | ---------------------- | ---------------------------------------------- |
+| `contextInstance` | `AlwatrContext`\<`T`\> | The Alwatr context instance to subscribe to    |
+| `defaultValue`    | `T`                    | Default value to use when context is undefined |
+| `options?`        | `SubscribeOptions`     | Optional subscription options                  |
 
 ## Returns
 
@@ -45,13 +44,11 @@ function UserProfile() {
   );
 }
 
-// With dependencies and options
-function UserWithDeps() {
-  const [userId, setUserId] = useState(1);
+// With subscription options
+function UserWithOptions() {
   const user = useContext(
     userContext,
     defaultUser,
-    [userId], // Re-subscribe when userId changes
     { once: true }, // Subscription options
   );
 
