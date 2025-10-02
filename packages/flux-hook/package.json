@@ -1,22 +1,24 @@
 {
-  "name": "@nexim/api-connect",
+  "name": "@nexim/flux-hook",
   "version": "0.0.0",
-  "description": "A utility function to execute Alwatr API & Database calls with TypeScript type safety using the Safe Result Pattern.",
+  "description": "React hooks for Alwatr's flux architecture patterns with TypeScript type safety",
   "keywords": [
-    "api",
-    "fetch",
+    "react",
+    "hooks",
+    "flux",
+    "state-management",
     "typescript",
     "nexim",
     "alwatr"
   ],
-  "homepage": "https://github.com/the-nexim/alwatr-toolkit/tree/next/packages/api-connect#readme",
+  "homepage": "https://github.com/the-nexim/alwatr-toolkit/tree/next/packages/flux-hook#readme",
   "bugs": {
     "url": "https://github.com/the-nexim/alwatr-toolkit/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/the-nexim/alwatr-toolkit",
-    "directory": "packages/api-connect"
+    "directory": "packages/flux-hook"
   },
   "license": "AGPL-3.0-only",
   "author": "S. Amir Mohammad Najafi <njfamirm@gmail.com> (https://www.njfamirm.ir)",
@@ -24,7 +26,7 @@
     {
       "name": "MohammadReza Ghadiri",
       "email": "ghmamadreza84@gmail.com",
-      "url": "https://github.com/orgs/the-nexim/people/GhMamadreza84"
+      "url": "https://github.com/GhMamadreza84"
     }
   ],
   "type": "module",
@@ -46,22 +48,22 @@
   "scripts": {
     "build": "wireit",
     "doc": "wireit",
+    "serve": "nano-build --serve",
     "test": "wireit",
     "watch": "wireit"
   },
   "dependencies": {
-    "@alwatr/fetch": "^5.6.6",
-    "@alwatr/nitrobase-helper": "^7.8.0",
-    "@alwatr/package-tracer": "^5.5.7"
+    "@alwatr/flux": "^4.0.5",
+    "@alwatr/package-tracer": "^5.5.7",
+    "react": "^19.2.0"
   },
   "devDependencies": {
-    "@alwatr/nano-build": "^6.0.2",
-    "@alwatr/nanotron": "^4.9.4",
-    "@alwatr/nitrobase-types": "^7.8.0",
-    "@alwatr/type-helper": "^5.4.4",
+    "@alwatr/nano-build": "latest",
     "@nexim/eslint-config": "^2.1.3",
     "@nexim/prettier-config": "^1.3.1",
     "@nexim/typescript-config": "^2.0.1",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "ava": "^6.4.1",
     "typedoc": "^0.28.13",
     "typedoc-plugin-markdown": "^4.9.0",

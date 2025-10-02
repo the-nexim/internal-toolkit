@@ -88,5 +88,6 @@
     {
       "file": ".github/copilot-instruction.md"
     }
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
