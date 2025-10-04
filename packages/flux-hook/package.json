@@ -11,13 +11,13 @@
     "nexim",
     "alwatr"
   ],
-  "homepage": "https://github.com/the-nexim/alwatr-toolkit/tree/next/packages/flux-hook#readme",
+  "homepage": "https://github.com/the-nexim/internal-toolkit/tree/next/packages/flux-hook#readme",
   "bugs": {
-    "url": "https://github.com/the-nexim/alwatr-toolkit/issues"
+    "url": "https://github.com/the-nexim/internal-toolkit/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/the-nexim/alwatr-toolkit",
+    "url": "https://github.com/the-nexim/internal-toolkit",
     "directory": "packages/flux-hook"
   },
   "license": "AGPL-3.0-only",
