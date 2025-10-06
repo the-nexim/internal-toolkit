@@ -49,7 +49,6 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
 
   options.cacheStrategy ??= 'update_cache';
 
-  console.log('Fetching from Nitrobase:', url); // Logging for the team
 
   let rawResponse: Response;
   try {
@@ -106,7 +105,6 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
     };
   }
 
-  console.log('Success in nitrobaseFetch'); // Logging
   return {
     type: 'success',
     rawResponse,
