@@ -1,6 +1,8 @@
 import { fetch } from '@alwatr/fetch';
 import { getStorePath } from '@alwatr/nitrobase-helper';
 
+import { logger } from './logger.js';
+
 import type { ErrorServiceResponse, NitrobaseFetchResult } from './type.js';
 import type { CollectionContext, DocumentContext, StoreFileStat } from '@alwatr/nitrobase-types';
 
@@ -29,13 +31,13 @@ import type { CollectionContext, DocumentContext, StoreFileStat } from '@alwatr/
  * });
  *
  * if (result.type === 'success') {
- *   console.log('Document data:', result.db);
+ *   logger.logMethodArgs?.('Document data:', result.db);
  * } else if (result.type === 'network_error') {
- *   console.error('Network error:', result.error);
+ *   logger.logMethodArgs?.('Network error:', result.error);
  * } else if (result.type === 'nitrobase_error') {
- *   console.error('Database error:', result.response);
+ *   logger.logMethodArgs?.('Database error:', result.response);
  * } else {
- *   console.error('Unexpected error:', result.error);
+ *   logger.logMethodArgs?.('Unexpected error:', result.error);
  * }
  * ```
  */
@@ -49,8 +51,7 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
 
   options.cacheStrategy ??= 'update_cache';
 
-  console.log('Fetching from Nitrobase:', url); // Logging for the team
-
+  logger.logMethodArgs?.('nitrobaseFetch: fetching', {url});
   let rawResponse: Response;
   try {
     rawResponse = await fetch({
@@ -63,7 +64,7 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
     });
   }
   catch (error) {
-    console.error('Network error in nitrobaseFetch:', error); // Logging
+    logger.logMethodArgs?.('Network error in nitrobaseFetch:', error); // Logging
     return {
       type: 'network_error',
       error,
@@ -75,7 +76,7 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
     parsedJson = await rawResponse.json();
   }
   catch (error) {
-    console.error('Unexpected error parsing JSON in nitrobaseFetch:', error); // Logging
+    logger.logMethodArgs?.('Unexpected error parsing JSON in nitrobaseFetch:', error); // Logging
     return {
       type: 'unexpected_error',
       rawResponse,
@@ -87,7 +88,7 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
     typeof parsedJson === 'object' && parsedJson !== null && typeof (parsedJson as DictionaryOpt).ok === 'boolean';
 
   if (!isResponseFromNitrobase) {
-    console.warn('Unexpected response format in nitrobaseFetch'); // Logging
+    logger.logMethod?.('Unexpected response format in nitrobaseFetch'); // Logging
     return {
       type: 'unexpected_error',
       rawResponse,
@@ -98,15 +99,14 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
 
   // status code is not in the range 200-299
   if (!response.ok) {
-    console.error('Nitrobase error:', response); // Logging
+    logger.logMethodArgs?.('Nitrobase error:', response); // Logging
     return {
       type: 'nitrobase_error',
       rawResponse,
       response,
     };
   }
-
-  console.log('Success in nitrobaseFetch'); // Logging
+  logger.logMethod?.('nitrobaseFetch: success');
   return {
     type: 'success',
     rawResponse,

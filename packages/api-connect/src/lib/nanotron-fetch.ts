@@ -23,13 +23,13 @@ import type { Json } from '@alwatr/type-helper';
  * });
  *
  * if (result.type === 'success') {
- *   console.log('User data:', result.response.data);
+ *   logger.logMethodArgs?.('User data:', result.response.data);
  * } else if (result.type === 'network_error') {
- *   console.error('Network error:', result.error);
+ *   logger.logMethodArgs?.('Network error:', result.error);
  * } else if (result.type === 'nanotron_error') {
- *   console.error('API error:', result.response);
+ *   logger.logMethodArgs?.('API error:', result.response);
  * } else {
- *   console.error('Unexpected error:', result.error);
+ *   logger.logMethodArgs?.('Unexpected error:', result.error);
  * }
  * ```
  */
