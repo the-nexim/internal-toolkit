@@ -51,7 +51,7 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
 
   options.cacheStrategy ??= 'update_cache';
 
-
+  logger.logMethodArgs?.('nitrobaseFetch: fetching', {url});
   let rawResponse: Response;
   try {
     rawResponse = await fetch({
