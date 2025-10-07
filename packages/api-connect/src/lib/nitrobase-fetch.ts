@@ -106,7 +106,7 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
       response,
     };
   }
-
+  logger.logMethod?.('nitrobaseFetch: success');
   return {
     type: 'success',
     rawResponse,
