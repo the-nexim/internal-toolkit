@@ -53,8 +53,8 @@
     "watch": "wireit"
   },
   "dependencies": {
-    "@alwatr/flux": "^4.0.5",
-    "@alwatr/package-tracer": "^5.5.7",
+    "@alwatr/flux": "^6.1.1",
+    "@alwatr/package-tracer": "^5.5.26",
     "react": "^19.2.3"
   },
   "devDependencies": {
