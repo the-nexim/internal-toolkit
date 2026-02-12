@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/the-nexim/internal-toolkit/compare/@nexim/api-connect@1.0.1...@nexim/api-connect@1.0.2) (2026-02-12)
+
+### Bug Fixes
+
+* **api-connect:** prevent json body parse when duplication handled ([22b253e](https://github.com/the-nexim/internal-toolkit/commit/22b253e44f1f7f1d0c42913d624f09f08472c08a)) by @
+
 ## [1.0.1](https://github.com/the-nexim/internal-toolkit/compare/@nexim/api-connect@1.0.0...@nexim/api-connect@1.0.1) (2025-10-07)
 
 ### Bug Fixes
