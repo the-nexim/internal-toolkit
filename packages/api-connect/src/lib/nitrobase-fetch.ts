@@ -73,7 +73,10 @@ export async function nitrobaseFetch<TData extends DocumentContext | CollectionC
 
   let parsedJson: unknown;
   try {
-    parsedJson = await rawResponse.json();
+    const responseToUse = rawResponse.bodyUsed
+      ? rawResponse.clone()
+      : rawResponse;
+    parsedJson = await responseToUse.json();
   }
   catch (error) {
     logger.logMethodArgs?.('Unexpected error parsing JSON in nitrobaseFetch:', error); // Logging

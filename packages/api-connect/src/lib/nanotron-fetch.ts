@@ -52,7 +52,10 @@ export async function nanotronFetch<TData extends Json>(options: FetchOptions): 
 
   let parsedJson: unknown;
   try {
-    parsedJson = await rawResponse.json();
+    const responseToUse = rawResponse.bodyUsed
+      ? rawResponse.clone()
+      : rawResponse;
+    parsedJson = await responseToUse.json();
   }
   catch (error) {
     return {
