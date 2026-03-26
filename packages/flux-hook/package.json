@@ -64,11 +64,11 @@
     "@nexim/typescript-config": "^2.0.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "ava": "^6.4.1",
-    "typedoc": "^0.28.16",
-    "typedoc-plugin-markdown": "^4.10.0",
+    "ava": "^7.0.0",
+    "typedoc": "^0.28.18",
+    "typedoc-plugin-markdown": "^4.11.0",
     "typedoc-plugin-no-inherit": "^1.6.1",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "wireit": "^0.14.12"
   },
   "publishConfig": {
