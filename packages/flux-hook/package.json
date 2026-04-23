@@ -59,8 +59,8 @@
   },
   "devDependencies": {
     "@alwatr/nano-build": "^6.4.0",
-    "@nexim/eslint-config": "^2.1.6",
-    "@nexim/prettier-config": "^1.3.3",
+    "@nexim/eslint-config": "^2.1.7",
+    "@nexim/prettier-config": "^1.3.4",
     "@nexim/typescript-config": "^2.0.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
